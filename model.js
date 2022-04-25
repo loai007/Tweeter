@@ -1,8 +1,8 @@
 // Tweeter model
 const Tweeter = function () {
-  let postsArr = [];
-  let postIdCounter = 1;
-  let commentIdCounter = 1;
+  let _postsArr = [];
+  let _postIdCounter = 1;
+  let _commentIdCounter = 1;
 
   /***************************************************Post-Functions**************************************************************/
   /**
@@ -10,27 +10,27 @@ const Tweeter = function () {
    * @param {string} text
    */
   const addPost = function (text) {
-    postsArr.push({
+    _postsArr.push({
       text: text,
-      id: "p" + postIdCounter,
+      id: "p" + _postIdCounter,
       comments: [],
     });
-    postIdCounter += 1;
+    _postIdCounter += 1;
   };
 
   /**
    * This function get the postsArr
    * @returns postsArr
    */
-  const getPosts = () => postsArr;
+  const getPosts = () => _postsArr;
 
   /**
    * This function removes post by pID from postsArr
    * @param {string} pID
    */
   const removePost = (pID) => {
-    for (post in postsArr) {
-      if (postsArr[post].id === pID) postsArr.splice(post, 1);
+    for (post in _postsArr) {
+      if (_postsArr[post].id === pID) _postsArr.splice(post, 1);
     }
   };
 
@@ -41,14 +41,14 @@ const Tweeter = function () {
    * @param {string} text
    */
   const addComment = function (pID, text) {
-    for (let post in postsArr) {
-      if (postsArr[post].id === pID)
-        postsArr[post].comments.push({
-          id: "c" + commentIdCounter,
+    for (let post in _postsArr) {
+      if (_postsArr[post].id === pID)
+        _postsArr[post].comments.push({
+          id: "c" + _commentIdCounter,
           text: text,
         });
     }
-    commentIdCounter += 1;
+    _commentIdCounter += 1;
   };
 
   /**
@@ -57,11 +57,11 @@ const Tweeter = function () {
    * @param {string} cID
    */
   const removeComment = (pID, cID) => {
-    for (post in postsArr) {
-      if (postsArr[post].id === pID)
-        for (comment in postsArr[post].comments)
-          if (postsArr[post].comments[comment].id === cID)
-            postsArr[post].comments.splice(comment, 1);
+    for (post in _postsArr) {
+      if (_postsArr[post].id === pID)
+        for (comment in _postsArr[post].comments)
+          if (_postsArr[post].comments[comment].id === cID)
+            _postsArr[post].comments.splice(comment, 1);
     }
   };
   return {
